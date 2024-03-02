@@ -41,8 +41,9 @@ public function it_should_be_able_to_invite_someone_to_the_platform()
 - RefreshDatabase;
     - a cada test que rodar, mata banco de dados e sube de novo
 # Dicas
+- mostrar exception qeu ira estourar 
+    - $this->withoutExceptionHandling()
 ## Extensões VSCode
 - better PHPUnit
 - PHPUNit test explorer
 - Test explorer UI
-
