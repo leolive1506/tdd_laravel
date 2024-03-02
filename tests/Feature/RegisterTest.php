@@ -25,11 +25,11 @@ class RegisterTest extends TestCase
             'name' => 'Leonardo Lopes',
             'email' => 'leonardolivelopes2@gmail.com',
             'email_confirmation' => 'leonardolivelopes2@gmail.com',
-            'password' => 'asdfasdf'
+            'password' => 'Asdfsdf'
         ]);
 
         // assert
-        $response->assertRedirect('dashboard');
+        $response->assertRedirect(route('dashboard'));
         $this->assertDatabaseHas('users', [
             'name' => 'Leonardo Lopes',
             'email' => 'leonardolivelopes2@gmail.com',
@@ -38,7 +38,7 @@ class RegisterTest extends TestCase
         /** @var User $user */
         $user = User::whereEmail('leonardolivelopes2@gmail.com')->firstOrFail();
         $this->assertTrue(
-            Hash::check('asdfasdf', $user->password),
+            Hash::check('Asdfsdf', $user->password),
             'Checking if password was saved and it is encrypted'
         );
     }
