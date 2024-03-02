@@ -47,3 +47,6 @@ public function it_should_be_able_to_invite_someone_to_the_platform()
 - better PHPUnit
 - PHPUNit test explorer
 - Test explorer UI
+
+## [brasil apis](https://brasilapi.com.br/docs)
+- disponibiliza cnpf, cep
