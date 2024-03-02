@@ -2,7 +2,10 @@
 
 namespace App\Rules;
 
+use App\Services\BrasilAPI\BrasilAPI;
+use App\Services\BrasilAPI\Exceptions\CNPJNotFound;
 use Closure;
+use Exception;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Http;
 
@@ -15,19 +18,10 @@ class ValidCNPJ implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $response = Http::get("https://brasilapi.com.br/api/cnpj/v1/{$value}");
-        $status = $response->status();
-
-        if ($status !== 200) {
+        try {
+            (new BrasilAPI())->cnpj($value);
+        } catch (Exception $e) {
             $fail('The :attribute dont exists');
-            return;
-        }
-
-        $active = $response->json()['descricao_situacao_cadastral'] === 'ATIVA';
-
-        if (!$active) {
-            $fail('The :attribute dont exists');
-            return;
         }
     }
 }

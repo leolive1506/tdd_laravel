@@ -16,7 +16,11 @@ class ValidCNPJTest extends TestCase
     {
         Http::fake([
             'https://brasilapi.com.br/api/cnpj/v1/06990590000123' => Http::response(
-                ['descricao_situacao_cadastral' => 'ATIVA']
+                [
+                    'cnpj' => '06.990.590/0001-23',
+                    'razao_social' => 'Empresa test',
+                    'descricao_situacao_cadastral' => 'ATIVA'
+                ]
             , 200)
         ]);
         // CNPJ GOOGLE: 06990590000123
@@ -32,7 +36,11 @@ class ValidCNPJTest extends TestCase
                 [], 404
             ),
             'https://brasilapi.com.br/api/cnpj/v1/06990590000133' => Http::response(
-                ['descricao_situacao_cadastral' => 'INATIVA'], 200
+                [
+                    'cnpj' => '06.990.590/0001-33',
+                    'razao_social' => 'Empresa test',
+                    'descricao_situacao_cadastral' => 'INATIVA'
+                ], 200
             ),
         ]);
 
