@@ -10,6 +10,7 @@ class DeleteController extends Controller
 {
     public function __invoke(Todo $todo)
     {
+        $this->authorize('delete', $todo);
         $todo->delete();
         return redirect()->route('todo.index');
     }
